@@ -37,7 +37,8 @@ project-root/
 ├── Cos2614_Assignment_1.pdf   # Assingment pdf
 ├── LICENSE.md                 # Project license
 ├── main.cpp                   # Application entry point
-└── README.md                  # Project documentation
+├── README.md                  # Project documentation
+└── walkthrough.mp4            # Showcase how to use the app
 ```
 
 ---
@@ -129,7 +130,6 @@ For example, on Windows 11 you would run
 ```
 ConsoleCarRental.exe
 ```
-![Terminal run app](screenshots/Terminal_run.png)
 
 The application should now be running in the terminal
 ![Terminal running app](screenshots/Terminal_running_app.png)
@@ -137,6 +137,7 @@ The application should now be running in the terminal
 ---
 
 ## Notes
+- Please watch the walkthrough video in the project root dir to see all of the functionality.
 - Data is loaded on startup and saved during runtime.
 - File paths are relative to the application working directory.
 - File paths you use for your setup are dependant on your operating system and where the programs are located so I can only give examples.
