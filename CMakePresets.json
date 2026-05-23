@@ -1,0 +1,17 @@
+
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "ConsoleCarRental",
+            "generator": "Ninja",
+            "binaryDir": "build",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_C_COMPILER": "C:/msys64/mingw64/bin/gcc.exe",
+                "CMAKE_CXX_COMPILER": "C:/msys64/mingw64/bin/g++.exe",
+                "CMAKE_PREFIX_PATH": "C:/Qt/6.11.0/mingw_64"
+            }
+        }
+    ]
+}
