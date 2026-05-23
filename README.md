@@ -1,6 +1,10 @@
 
 # ConsoleCarRental
 
+> **Important:** For the best viewing experience, it is recommended to read this `README.md` directly on the GitHub repository where all Markdown formatting, screenshots, and rendered content are displayed correctly.
+
+https://github.com/PastorRowan/Cos2614-Assessment-1
+
 A console based application that allows you to enter cars and motorcycles into the system and have the systems state persist between application executions.
 
 ---
@@ -49,10 +53,10 @@ Ensure the following are installed:
 - [ ] CMake (3.16+ recommended)
 - [ ] Ninja (Any build executor that CMake supports is fine)
 
+Uncompress the compressed project file
+
 ### Modify the CMakePresets.json file to the correct values according to your setup
 ![Qt Creator File Menu](screenshots/CMakePresetsJsonExample.png)
-
-Uncompress the compressed project file
 
 ### Option 1: Using Qt Creator (Recommended)
 
@@ -83,7 +87,6 @@ Uncompress the compressed project file
 ### Option 2: Build from Terminal (CMake):
 
 1. Traverse to your project root
-![Terminal at Project root directory](screenshots/Terminal_project_root.png)
 
 2. Generate Build Files using this command (remember to fill it in)
 ```
@@ -99,18 +102,30 @@ cmake -S . -B build ^
 -DCMAKE_CXX_COMPILER="C:\msys64\mingw64\bin\g++.exe" ^
 -DCMAKE_PREFIX_PATH="C:\Qt\6.11.1\mingw_64"
 ```
-![Terminal generate build](screenshots/Terminal_generate_build.png)
 
 3. Build the Project
 ```
 cmake --build build
 ```
-![Terminal build](screenshots/Terminal_build.png)
 
-4. Run the Application
+4. Traverse to the build directory
 ```
 cd build
 ```
+
+All the commands together shoud look like this
+![Terminal build](screenshots/Terminal_build_directory.png)
+
+5. If on Windows, run ```windeployqt.exe ConsoleCarRental.exe``` to copy the dll files for Qt
+
+For example, on Windows 11 you would run
+```
+"C:\Qt\6.11.1\mingw_64\bin\windeployqt.exe" ConsoleCarRental.exe
+```
+
+![Terminal build](screenshots/Terminal_ran_windeployqt.png)
+
+6. Run the Application
 ```
 ConsoleCarRental.exe
 ```
@@ -125,4 +140,4 @@ The application should now be running in the terminal
 - Data is loaded on startup and saved during runtime.
 - File paths are relative to the application working directory.
 - File paths you use for your setup are dependant on your operating system and where the programs are located so I can only give examples.
-- I have only tested the program on Windows 11 64 bit, I do not know whether the application will run on other operating systems or not.
+- I have only tested the program on Windows 11 64 bit, I do not know whether the application will run on other operating systems.

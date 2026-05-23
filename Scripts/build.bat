@@ -1,6 +1,6 @@
 
 pushd ..
 
-cmake --build build --verbose
+cmake --build build
 
 popd
