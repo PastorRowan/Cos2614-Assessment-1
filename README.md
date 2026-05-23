@@ -49,9 +49,12 @@ Ensure the following are installed:
 - [ ] CMake (3.16+ recommended)
 - [ ] Ninja (Any build executor that CMake supports is fine)
 
-### Option 1: Using Qt Creator (Recommended)
+### Modify the CMakePresets.json file to the correct values according to your setup
+![Qt Creator File Menu](screenshots/CMakePresetsJsonExample.png)
 
-Uncompress the project
+Uncompress the compressed project file
+
+### Option 1: Using Qt Creator (Recommended)
 
 1. Open Qt Creator
 2. Click ```File```
@@ -79,16 +82,15 @@ Uncompress the project
 
 ### Option 2: Build from Terminal (CMake):
 
-1. Traverse to your project root:
+1. Traverse to your project root
 ![Terminal at Project root directory](screenshots/Terminal_project_root.png)
 
-2. Generate Build Files
+2. Generate Build Files using this command (remember to fill it in)
 ```
 cmake -S . -B build -G "Build tool name" -DCMAKE_MAKE_PROGRAM="C:\Path\to\build\executor\program.executable_binary" -DCMAKE_C_COMPILER="C:\Path\to\toolchain's\C\compiler.executable_binary" -DCMAKE_CXX_COMPILER="C:\Path\to\toolchain's\C++\compiler.executable_binary" -DCMAKE_PREFIX_PATH="C:\Path\to\Qt\toolChainUsed"
 ```
 
-For example, Mine for Windows operating system with mingw64 toolchain is:
-
+For example, with the Windows operating system with mingw64 toolchain installed the build command would be:
 ```
 cmake -S . -B build ^
 -G "Ninja" ^
@@ -122,4 +124,5 @@ The application should now be running in the terminal
 ## Notes
 - Data is loaded on startup and saved during runtime.
 - File paths are relative to the application working directory.
-- The application may run or not
+- File paths you use for your setup are dependant on your operating system and where the programs are located so I can only give examples.
+- I have only tested the program on Windows 11 64 bit, I do not know whether the application will run on other operating systems or not.
