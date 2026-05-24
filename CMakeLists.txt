@@ -42,6 +42,7 @@ set(SOURCES
     src/pages/DisplayAvailableVehiclesOnlyPage.cpp
     src/pages/helpers.cpp
     src/pages/HomePage.cpp
+    src/pages/Page.cpp
     src/pages/RentVehiclePage.cpp
     src/pages/ReturnVehiclePage.cpp
     src/pages/SearchVehicleById.cpp

@@ -4,6 +4,7 @@
 #include "App.h"
 
 #include <QString>
+#include <QDebug>
 
 // Returns the current interaction mode
 pages::HomePage::Mode pages::HomePage::getMode() const {
@@ -34,7 +35,7 @@ void pages::HomePage::handleMenuInput(const QString& input, App& app) {
     } else if (input == "7") {
         app.setCurrentPageId(pages::Id::ReturnVehiclePage);
     } else {
-        status = "\'" + input + "\' Input is invalid";
+        setStatus("\"" + input + "\" is not a valid menu option");
     };
 };
 
@@ -74,7 +75,7 @@ Options:
 // Updates the HomePage state based on user input
 void pages::HomePage::update(const QString& input, App& app) {
 
-    status = "";
+    clearStatus();
 
     (this->*handlers[static_cast<int>(mode)])(input, app);
 
@@ -85,7 +86,9 @@ QString pages::HomePage::compose(App& app) const {
 
     QString
         outputStr = pageModeTemplates[static_cast<int>(mode)]
-        .arg(status);
+        .arg(
+            getStatus()
+        );
     ;
 
     return outputStr;

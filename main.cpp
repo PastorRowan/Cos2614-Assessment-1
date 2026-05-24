@@ -8,6 +8,7 @@
 #include <QString>
 #include <QTextStream>
 #include <QCoreApplication>
+#include <QDebug>
 
 // Application entry point
 int main(int argc, char *argv[]) {

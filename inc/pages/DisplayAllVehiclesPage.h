@@ -31,11 +31,9 @@ namespace pages {
              * Removes the need for large switch statements
              * Allows selecting pages dynamically based on mode
              */
-            static const QString pageModeTemplates[static_cast<int>(Mode::count)];
+            static const QString pageModeTemplates[static_cast<int>(Mode::count)];        
 
-            // Displays errors or success messages to the user
-            QString status = "";
-                        
+            // Handles input for each respective state
             void handleMenuInput(const QString& input, App& app);
 
             using Handler = void (DisplayAllVehiclesPage::*)(const QString& input, App& app);

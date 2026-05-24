@@ -63,6 +63,9 @@ namespace vehicles {
             // Converts the type identifier to a QString
             QString typeIdToQString() const;
 
+            // Converts the vehicle type ID to a pretty QString
+            QString typeIdToPrettyQString() const;
+
             // Gets the unique vehicle ID
             QString getVehicleId() const;
 

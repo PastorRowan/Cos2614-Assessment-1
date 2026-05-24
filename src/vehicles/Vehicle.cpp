@@ -41,6 +41,27 @@ QString vehicles::Vehicle::typeIdToQString() const {
     return QString::number(static_cast<int>(typeId));
 };
 
+// Converts the vehicle type ID to a pretty QString
+QString vehicles::Vehicle::typeIdToPrettyQString() const {
+
+    QString output;
+
+    switch (getTypeId()) {
+        case vehicles::TypeId::car:
+            output = "Car";
+            break;
+        case vehicles::TypeId::motorCycle:
+            output = "Motorcycle";
+            break;
+        default:
+            output = "Invalid vehicles type id";
+            break;
+    };
+
+    return output;
+
+};
+
 // Gets the vehicle ID
 QString vehicles::Vehicle::getVehicleId() const {
     return vehicleId;

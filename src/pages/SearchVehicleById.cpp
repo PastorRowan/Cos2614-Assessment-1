@@ -32,25 +32,29 @@ void pages::SearchVehicleByIdPage::handleMenuInput(const QString& input, App& ap
             );
 
             if (vehiclePointer == nullptr) {
-                status = QString("Vehicle with id '%1' does not exist").arg(fields.vehicleId);
+                setStatus(
+                    QString("Vehicle with id '%1' does not exist").arg(fields.vehicleId)
+                );
             } else {
-                status = QString(
-R"(Vehicle with id '%1' =
+                setStatus(
+                    QString(
+R"(%1 with vehicle id '%2' =
 
-%2)").arg(
+%3)").arg(
+    vehiclePointer->typeIdToPrettyQString(),
     fields.vehicleId,
     vehiclePointer->toPrettyQString()
-);
+));
             };
 
             fields = pages::SearchVehicleByIdPage::Fields {};
 
         } else {
-            status = "Form is not fully entered";
+            setStatus("Form is not fully entered");
         };
 
     } else {
-        status = "\"" + input + "\" is invalid input";
+        setStatus("\"" + input + "\" is not a valid menu option");
     };
 };
 
@@ -62,7 +66,7 @@ void pages::SearchVehicleByIdPage::handleEnterVehicleIdInput(const QString& inpu
         setMode(Mode::menu);
         fields.vehicleId = input;
     } else {
-        status = "\"" + input + "\" is invalid input";
+        setStatus("\"" + input + "\" is not a positive integer (e.g 123)");
     };
 };
 
@@ -118,7 +122,7 @@ bool pages::SearchVehicleByIdPage::isFormEntered() const {
 // Updates the page state based on user input
 void pages::SearchVehicleByIdPage::update(const QString& input, App& app) {
 
-    status = "";
+    clearStatus();
 
     (this->*handlers[static_cast<int>(mode)])(input, app);
 
@@ -131,7 +135,7 @@ QString pages::SearchVehicleByIdPage::compose(App& app) const {
         outputStr = pageModeTemplates[static_cast<int>(mode)]
         .arg(
             pages::composeField(fields.vehicleId),
-            status
+            getStatus()
         )
     ;
 

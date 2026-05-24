@@ -51,21 +51,19 @@ QString VehiclesFile::composeAllVehicles() const {
         };
     };
 
-    QString allCarsQString = composePipeSeparatedValuesToTable(
+    QString allCarsTableQString = "Cars table\n" + composePipeSeparatedValuesToTable(
         allCarsQStringList,
         vehicles::Car::fieldNames,
         { 2, 2, 2, 2, 2, 2, 2, 2 }
     );
 
-    QString allMotorCyclesQString = composePipeSeparatedValuesToTable(
+    QString allMotorCyclesTableQString = "Motorcycles table\n" + composePipeSeparatedValuesToTable(
         allMotorcyclesQStringList,
         vehicles::Motorcycle::fieldNames,
         { 2, 2, 2, 2, 2, 2, 2 }
     );
 
-    allCarsQString += "\n\n";
-
-    QString outputStr = allCarsQString + allMotorCyclesQString;
+    QString outputStr = allCarsTableQString + "\n\n" + allMotorCyclesTableQString;
 
     return outputStr;
 

@@ -27,14 +27,14 @@ void pages::ReturnVehiclePage::handleMenuInput(const QString& input, App& app) {
         if (isFormEntered()) {
             app.getVehiclesFile().returnVehicleById(
                 fields.vehicleId,
-                status
+                getStatusRef()
             );
             fields = pages::ReturnVehiclePage::Fields {};
         } else {
-            status = "Form is not fully entered";
+            setStatus("Form is not fully entered");
         };
     } else {
-        status = "\"" + input + "\" is invalid input";
+        setStatus("\"" + input + "\" is not a valid menu option");
     };
 };
 
@@ -46,7 +46,7 @@ void pages::ReturnVehiclePage::handleEnterVehicleIdInput(const QString& input, A
         setMode(Mode::menu);
         fields.vehicleId = input;
     } else {
-        status = "\"" + input + "\" is invalid input";
+        setStatus("\"" + input + "\" is not a positive integer (e.g 123)");
     };
 };
 
@@ -102,7 +102,7 @@ bool pages::ReturnVehiclePage::isFormEntered() const {
 // Updates the page state based on user input
 void pages::ReturnVehiclePage::update(const QString& input, App& app) {
 
-    status = "";
+    clearStatus();
 
     (this->*handlers[static_cast<int>(mode)])(input, app);
 
@@ -115,7 +115,7 @@ QString pages::ReturnVehiclePage::compose(App& app) const {
         outputStr = pageModeTemplates[static_cast<int>(mode)]
         .arg(
             pages::composeField(fields.vehicleId),
-            status
+            getStatus()
         )
     ;
 

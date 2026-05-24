@@ -36,14 +36,14 @@ void pages::AddMotorCyclePage::handleMenuInput(const QString& input, App& app) {
                 fields.model,
                 fields.pricePerDay.toDouble(),
                 fields.engineCapacityCC.toInt(),
-                status
+                getStatusRef()
             );
             fields = pages::AddMotorCyclePage::Fields {};
         } else {
-            status = "Form is not fully entered";
+            setStatus("Form is not fully entered");
         };
     } else {
-        status = "\"" + input + "\" is invalid input";
+        setStatus("\"" + input + "\" is not a valid menu option");
     };
 };
 
@@ -75,7 +75,7 @@ void pages::AddMotorCyclePage::handleEnterPricePerDayInput(const QString& input,
         fields.pricePerDay = input;
         setMode(Mode::menu);
     } else {
-        status = "\"" + input + "\" is invalid input";
+        setStatus("\"" + input + "\" is not a postive decimal number (e.g 123.45)");
     };
 };
 
@@ -87,7 +87,7 @@ void pages::AddMotorCyclePage::handleEnterEngineCapacityCC(const QString& input,
         fields.engineCapacityCC = input;
         setMode(Mode::menu);
     } else {
-        status = "\"" + input + "\" is invalid input";
+        setStatus("\"" + input + "\" is not a positive integer (e.g 123)");
     };
 };
 
@@ -210,7 +210,7 @@ bool pages::AddMotorCyclePage::isFormEntered() const {
 // Updates the page state using the provided user input
 void pages::AddMotorCyclePage::update(const QString& input, App& app) {
 
-    status = "";
+    clearStatus();
 
     (this->*handlers[static_cast<int>(mode)])(input, app);
 
@@ -226,7 +226,7 @@ QString pages::AddMotorCyclePage::compose(App& app) const {
             pages::composeField(fields.model),
             pages::composeField(fields.pricePerDay),
             pages::composeField(fields.engineCapacityCC),
-            status
+            getStatus()
         )
     ;
 

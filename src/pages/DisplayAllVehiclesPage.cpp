@@ -22,7 +22,7 @@ void pages::DisplayAllVehiclesPage::handleMenuInput(const QString& input, App& a
     if (input == "q") {
         app.setCurrentPageId(pages::Id::HomePage);
     } else {
-        status = "\"" + input + "\" is invalid input";
+        setStatus("\"" + input + "\" is not a valid menu option");
     };
 
 };
@@ -58,7 +58,7 @@ Options:
 // Updates the page state using the provided user input
 void pages::DisplayAllVehiclesPage::update(const QString& input, App& app) {
 
-    status = "";
+    clearStatus();
 
     (this->*handlers[static_cast<int>(mode)])(input, app);
 
@@ -76,7 +76,7 @@ QString pages::DisplayAllVehiclesPage::compose(App& app) const {
                 ? "No vehicles in the system"
                 : allVehiclesTable
             ),
-            status
+            getStatus()
         )
     ;
 

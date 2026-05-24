@@ -39,14 +39,14 @@ void pages::AddCarPage::handleMenuInput(const QString& input, App& app) {
                 fields.pricePerDay.toDouble(),
                 fields.numberOfDoors.toInt(),
                 fields.numberOfSeats.toInt(),
-                status
+                getStatusRef()
             );
             fields = pages::AddCarPage::Fields {};
         } else {
-            status = "Form is not fully entered";
+            setStatus("Form is not fully entered");
         };
     } else {
-        status = "\"" + input + "\" is invalid input";
+        setStatus("\"" + input + "\" is not a valid menu option");
     };
 };
 
@@ -78,7 +78,7 @@ void pages::AddCarPage::handleEnterPricePerDayInput(const QString& input, App& a
         fields.pricePerDay = input;
         setMode(Mode::menu);
     } else {
-        status = "\"" + input + "\" is invalid input";
+        setStatus("\"" + input + "\" is not a postive decimal number (e.g 123.45)");
     };
 };
 
@@ -90,7 +90,7 @@ void pages::AddCarPage::handleEnterNumberOfDoorsInput(const QString& input, App&
         fields.numberOfDoors = input;
         setMode(Mode::menu);
     } else {
-        status = "\"" + input + "\" is invalid input";
+        setStatus("\"" + input + "\" is not a positive integer (e.g 123)");
     };
 };
 
@@ -102,7 +102,7 @@ void pages::AddCarPage::handleEnterNumberOfSeatsInput(const QString& input, App&
         fields.numberOfSeats = input;
         setMode(Mode::menu);
     } else {
-        status = "\"" + input + "\" is invalid input";
+        setStatus("\"" + input + "\" is not a positive integer (e.g 123)");
     };
 };
 
@@ -259,7 +259,7 @@ bool pages::AddCarPage::isFormEntered() const {
  */
 void pages::AddCarPage::update(const QString& input, App& app) {
 
-    status = "";
+    clearStatus();
 
     (this->*handlers[static_cast<int>(mode)])(input, app);
 
@@ -281,7 +281,7 @@ QString pages::AddCarPage::compose(App& app) const {
             pages::composeField(fields.pricePerDay),
             pages::composeField(fields.numberOfDoors),
             pages::composeField(fields.numberOfSeats),
-            status
+            getStatus()
         )
     ;
 

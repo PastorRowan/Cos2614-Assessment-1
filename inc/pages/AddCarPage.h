@@ -52,9 +52,6 @@ namespace pages {
             // Checks whether all required form fields have been entered
             bool isFormEntered() const;
 
-            // Displays errors or success messages to the user
-            QString status = "";
-
             // Handles input for each respective state
             void handleMenuInput(const QString& input, App& app);
             void handleEnterBrandInput(const QString& input, App& app);
